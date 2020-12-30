@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "push-notifications-a7993": {
+      "hosting": {
+        "app": [
+          "push-notifications-a7993"
+        ]
+      }
+    }
+  }
+}
