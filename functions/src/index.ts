@@ -28,15 +28,14 @@ export const unsubscribeFromTopic = functions.https.onCall(async (data, context)
 
        const notification: admin.messaging.Notification  = {
         title: "New Discount",
-        body: discount.headline
-       }
+        body: discount.headline,
+       };
 
 
        const payload: admin.messaging.Message = {
         notification,
-        
-        topic: "discounts"
-       }
+        topic: "discounts",
+       };
 
        return admin.messaging().send(payload);
     })
