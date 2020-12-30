@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { ToastController } from "@ionic/angular";
+import { tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,16 @@ export class FcmService {
     });
 
     toast.present();
+  }
+
+  getPermission() {
+    this.angularFireMessaging.requestPermission
+      .pipe(
+        tap((data) => console.log({data}))
+      )
+      .subscribe((data) => {
+
+      })
   }
 
 }
