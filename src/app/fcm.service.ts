@@ -25,12 +25,14 @@ export class FcmService {
   }
 
   getPermission() {
-    this.angularFireMessaging.requestPermission
+    this.angularFireMessaging.requestToken
       .pipe(
         tap((data) => console.log({data}))
       )
       .subscribe((data) => {
 
+      },(error) => {
+        console.log('Something went wrong', error)
       })
   }
 
