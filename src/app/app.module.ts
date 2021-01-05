@@ -14,6 +14,9 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 
+
+
+console.log(environment.firebase)
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -21,9 +24,17 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
     AngularFireFunctionsModule,
     AngularFireMessagingModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyChKobqlHYG9U-yjBIPs2fTdm3TT_jE7-c",
+      // authDomain: "push-notifications-a7993.firebaseapp.com",
+      // projectId: "push-notifications-a7993",
+      // storageBucket: "push-notifications-a7993.appspot.com",
+      // messagingSenderId: "437327802529",
+      appId: "1:437327802529:web:fe3ed9ac4eb2e06df700e0"
+    }),
+   
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   
   ],
