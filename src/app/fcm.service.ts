@@ -8,7 +8,7 @@ import { tap } from "rxjs/operators";
   providedIn: 'root'
 })
 export class FcmService {
-
+  token: string = null;
   constructor(
     private angularFireMessaging: AngularFireMessaging,
     private angularFireFunctions: AngularFireFunctions,
@@ -27,13 +27,51 @@ export class FcmService {
   getPermission() {
     this.angularFireMessaging.requestToken
       .pipe(
-        tap((data) => console.log({data}))
+        tap((token) => this.token = token)
       )
       .subscribe((data) => {
-
+        console.log({data});
       },(error) => {
         console.log('Something went wrong', error)
       })
+  }
+
+  showMessages() {
+    this.angularFireMessaging.messages
+      .pipe(
+        tap(message => {
+
+        })
+      )
+      .subscribe((message) => {
+        console.log({message})
+      })
+  }
+
+
+  sub(topic) {
+    console.log('sub', topic)
+    this.angularFireFunctions
+      .httpsCallable('subscribeToTopic')({topic, token: this.token})
+        .pipe(
+          tap(
+            (res) => console.log({res})
+          )
+        )
+        .subscribe()
+  }
+
+
+  unsub(topic) {
+    console.log('unsub', topic)
+    this.angularFireFunctions
+      .httpsCallable('unsubscribeFromTopic')({topic, token: this.token})
+        .pipe(
+          tap(
+            (res) => console.log({res})
+          )
+        )
+        .subscribe()
   }
 
 }
