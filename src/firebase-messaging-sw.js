@@ -22,3 +22,16 @@ firebase.initializeApp({
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.
 const messaging = firebase.messaging();
+
+
+messaging.onBackgroundMessage((payload) => {
+  console.log('payload', payload);
+  const notificationTitle = 'ALERT';
+  const notificationOptions = {
+    body: "HELLO WORLD"
+  }
+  self.registration.showNotification({
+    notificationTitle,
+    notificationOptions
+  });
+})
